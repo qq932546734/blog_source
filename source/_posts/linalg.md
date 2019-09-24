@@ -78,7 +78,7 @@ $L$为单位下三角矩阵（对角元素为1），且当$i>j$，$L_{ij}$为消
 
 ### 外积
 不同于内积$x^Ty$，外积等于$xy^T$
-$$ xy^T = \begin{bmatrix} x_1 \\\\ x_2 \\\\ .\\\\ .\\\\ .\\\\ x_n \\\\ \end{bmatrix}
+$$ xy^T = \begin{bmatrix} x_1 \\\\ x_2 \\\\ \vdots \\\\ x_n \\\\ \end{bmatrix}
 (y_1, y_2, ..., y_n) $$
 
 
