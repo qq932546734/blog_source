@@ -5,6 +5,7 @@ tags:
 ---
 
 # 矩阵与方程组
+***
 
 ### 严格三角形的方程组
 若方程组中，第k个方程的前k-1个变量的系数均为零，且$x_k(k=1,..., n)$的系数不为零，则称该方程组为严格三角形的。
@@ -81,35 +82,52 @@ $L$为单位下三角矩阵（对角元素为1），且当$i>j$，$L_{ij}$为消
 $$ xy^T = \begin{bmatrix} x_1 \\\\ x_2 \\\\ \vdots \\\\ x_n \\\\ \end{bmatrix}
 (y_1, y_2, ..., y_n) $$
 
+# 行列式
+***
+### 子式和余子式
+令$A=(a_{ij})$为一$n*n$矩阵，并用$M_{ij}$来表示删除A中包含$a_{ij}$的行和列得到的$(n-1)(n-1)$矩阵。矩阵$M_{ij}$的行列式为$a_{ij}$的子式。
+$a_{ij}$的余子式$A_{ij}$为
+$$ A_{ij} = (-1)^{i+j}det(M_{ij})$$
 
-$$\frac{\partial u}{\partial t} 
-= h^2 \left( \frac{\partial^2 u}{\partial x^2} +
-\frac{\partial^2 u}{\partial y^2} +
-\frac{\partial^2 u}{\partial z^2}\right)$$
 
- $\begin{bmatrix} a & b \\\\ c & d \end{bmatrix}$
-
- $$
-f(n) =
-\begin{cases}
-n/2,  & \text{if $n$ is even} \\\\
-3n+1, & \text{if $n$ is odd}
+### 行列式
+$$
+det(A) = \begin{cases}
+a_{11} & \text{当n=1时} \\\\
+a_{i1}A_{i1}+a_{i2}A_{i2} + \cdots + a_{in}A_{in} & \text{当n > 1时，取第i行} \\\\
+a_{1j}A_{1j} + a_{2j}A_{2j} + \cdots + a_{nj}A_{nj} & \text{当n > 1时，取第j列} \\\\ 
 \end{cases}
 $$
+矩阵行列式等于矩阵转置的行列式
+$$
+det(A) = det(A^T)
+$$
+行列式性质
+1. 三角矩阵的行列式等于对角元素的乘积
+2. 若矩阵有一行或一列全为0，则$det(A)=0$
+3. 若矩阵有两行或两列相等，则$det(A)=0$
 
-$$
-\begin{equation}\begin{split} a&=b+c-d\\\\
-&\quad +e-f\\\\
-&=g+h\\\\
-& =i 
-\end{split}\end{equation}
-$$
 
-$$
-\begin{eqnarray}
-\nabla\cdot\vec{E} &=& \frac{\rho}{\epsilon_0} \\
-\nabla\cdot\vec{B} &=& 0 \\
-\nabla\times\vec{E} &=& -\frac{\partial B}{\partial t} \\
-\nabla\times\vec{B} &=& \mu_0\left(\vec{J}+\epsilon_0\frac{\partial E}{\partial t} \right)
-\end{eqnarray}
-$$
+# 向量空间
+
+***
+
+### 常见的向量空间
+
+1. 欧几里得向量空间（$R^n$），相同长度和相同方向的向量是相同的；
+2. 向量空间$R^{m*n}$，矩阵空间
+3. 定义在某个区间内的实值连续函数空间，$C[a,b]$，全集为一函数集合
+4. 定义在某个区间内的n阶实值连续可导函数空间，$C^n[a,b]$
+5. 多项式向量空间$P_n$，表示次数小于n的所有多项式集合
+
+### 矩阵的零空间
+令$A$为一$m*n$矩阵，矩阵的零空间表示为$N(A)$
+$$ N(A) = \lbrace x \in R^n | Ax=0 \rbrace $$
+
+### 线性组合和张成
+令$v_1, v_2, v_3, \cdots, v_n$为向量空间$V$中的向量，则$a_1v_1 + a_2v_2+\cdots+a_nv_n$称为向量$v_1, v_2, v_3, \cdots, v_n$的线性组合。它们构成的集合称为$v_1, v_2, v_3, \cdots, v_n$的张成，记为$Span(v_1,\cdots,v_n)$.
+$Span(v_1,\cdots, v_n)$是V的一个子空间。若$Span(v_1,\cdots, v_n) = V$，我们说向量$v_1,\cdots, v_n$张成向量V，${v_1,\cdots, v_n}$是V的一个张集。
+
+### 相容线性方程组的解集
+若线性方程组$Ax=b$是相容的，$x_0$为它的一个特解，则向量$y$也为其解的充要条件为$y=x_0+z$，其中$z \in N(A)$.
+由此我们可以推出求解所有解集的方法：先求出齐次方程的解，然后求一个特解$x_0$，解集即为：$x_0 + a_1z_1 + a_2z_2 + \cdots + a_nz_n$，其中，$z\in N(A)$
