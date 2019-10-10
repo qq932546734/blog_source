@@ -83,7 +83,10 @@ search:
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type:
+  type: git
+  repo: https://github.com/qq932546734/qq932546734.github.io
+  branch: master
+  message: 
 
 
 # math jax 
