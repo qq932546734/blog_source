@@ -49,13 +49,14 @@ tags:
 若满足$A=A^T$,为对称矩阵
 
 ### 矩阵的逆、非奇异矩阵
-若存在一个矩阵$B$使得$AB=BA=I$, 则称$n*n$矩阵A为可逆的，也为非奇异的。若矩阵不存在乘法逆元，则称之为奇异的。
-> 只有方阵才有逆这么一说，才有奇异性这么一说
+若存在一个矩阵$B$使得$AB=BA=I$, 则称$n\times n$矩阵A为可逆的，也为非奇异的。若矩阵不存在乘法逆元，则称之为奇异的。
+
+> 只有方阵才有逆，才有奇异性这么一说
 
 ### 矩阵运算
 1. $(AB)^T = {B^T}{A^T}$
-2. $(AB)^{-1} = B^{-1}A^{-1}$
-_不确定_
+2. $(AB)^{-1} = B^{-1}A^{-1}$(前提条件是AB都是方阵，且都可逆)
+
 
 > 1可以通过矩阵的元素$a_{ij}$进行证明；2可以通过$(AB)
 
@@ -67,13 +68,15 @@ _不确定_
 
 矩阵$A$左乘初等矩阵$E_1$(即$E_1*A$)等于将矩阵$A$按照初等矩阵$E_1$的行变换进行行变换。右乘初等矩阵等于按照初等矩阵的列变换进行相应的列变换。
 $$
+\begin{align}
 E_3 = \begin{bmatrix} 1 & 0 & 3\\\\ 0 & 1 & 0 \\\\ 0 & 0 & 1\end{bmatrix} \\\\
 E_3A = \begin{bmatrix} a_{11}+3a_{31} & a_{12}+3a_{32} & a_{13}+3a_{33} \\\\
 a_{21} & a_{22} & a_{23} \\\\
 a_{31} & a_{32} & a_{33} \end{bmatrix} \\\\
-AE_3 = \begin{bmatrix} a_11 & a_12 & 3a_{11} + a_{13} \\\\
+AE_3 = \begin{bmatrix} a_{11} & a_{12} & 3a_{11} + a_{13} \\\\
 a_{21} & a_{22} & 3a_{21} + a_{23} \\\\
 a_{31} & a_{32} & 3a_{31}+a_{33} \end{bmatrix}
+\end{align}
 $$
 
 ### 行等价
@@ -93,8 +96,10 @@ $L$为单位下三角矩阵（对角元素为1），且当$i>j$，$L_{ij}$为消
 
 ### 外积？？？
 不同于内积$x^Ty$，外积等于$xy^T$
-$$ xy^T = \begin{bmatrix} x_1 \\\\ x_2 \\\\ \vdots \\\\ x_n \\\\ \end{bmatrix}
-(y_1, y_2, ..., y_n) $$
+$$
+xy^T = \begin{bmatrix} x_1 \\\\ x_2 \\\\ \vdots \\\\ x_n \\\\ \end{bmatrix}
+(y_1, y_2, ..., y_n)
+$$
 
 ### 向量积
 给定$R^3$中的两个向量$x$和$y$，可以定义第三个向量，即向量积，记为$x\times y$:
@@ -106,10 +111,14 @@ y_1 & y_2 & y_3 \\\\  \end{matrix}
 \right\rvert
 $$
 将以上行列式第一行换成第二行或者第三行的元素，根据行列式的性质，存在两行相等的行列式为0，故
-$$ x^T(x\times y) = y^T(x\times y) = 0 $$
+$$
+x^T(x\times y) = y^T(x\times y) = 0
+$$
 内积为0的两向量正交，故$(x\times y)$跟$x$和$y$都正交。
 向量积的欧几里得长度等于
-$$ ||x\times y|| = \left\lVert x \right\rVert \left\lVert y \right\rVert \sin\theta$$
+$$
+\left\lVert x\times y \right\rVert = \left\lVert x \right\rVert \left\lVert y \right\rVert \sin\theta
+$$
 
 ## 行列式
 ***
@@ -228,7 +237,8 @@ $$ L(\alpha v_1+ \beta v_2) = \alpha L(v_1) + \beta L(v_2) $$
 
 ### 线性变换的矩阵表示
 令$L$为一从$R^n$到$R^m$的线性变换，则存在一个$m \times n$的矩阵A，使得对于每一个$x \in R^n$, 有$L(x) = Ax$.
-> $$ 
+> 
+$$
 L(x) = L(x_1e_1 + \cdots + x_ne_n) = x_1L(e_1) + \cdots + x_nL(e_n)
 \\\\ = (L(e_1), L(e_2), \cdots, L(e_n))
 \begin{bmatrix} x_1 \\\\ x_2 \\\\ \vdots \\\\ x_n \\\\ \end{bmatrix}
@@ -245,6 +255,7 @@ $R^2$中的平移，需要调整两方面。首先是点的表示，
 $$ \begin{bmatrix} x_1 \\\\ x_2 \end{bmatrix} \rightarrow \begin{bmatrix} x_1 \\\\ x_2 \\\\ 1 \end{bmatrix} $$
 其次是转换矩阵A，若平移向量为$a = (6, 2)^T$，则转换矩阵为
 $$ \begin{bmatrix} 1 & 0 \\\\ 0 & 1 \end{bmatrix} \rightarrow \begin{bmatrix} 1 & 0 &  6 \\\\ 0 & 1 & 2 \\\\ 0 & 0 & 1 \end{bmatrix} $$
+
 > 将单位矩阵的最后一行和最后一列添加到$2 \times 2$矩阵，然后将平移向量替换最后一列的前两个元素 
 
 ### 相似性
@@ -270,19 +281,18 @@ $$ x^Ty = x_1y_1 + \cdots + x_ny_n $$
 若$x^Ty=0$, 则向量 $x$ 和向量 $y$ 正交，记为$x \bot y$
 
 ### 欧几里得长度
-$$ \left\lVert x \right\rVert = (x^Tx)^{1/2} = \sqrt {x_1^2 + x_2^2 + x_3^2}
-$$
+$$  \left\lVert x \right\rVert = (x^Tx)^{1/2} = \sqrt {x_1^2 + x_2^2 + x_3^2} $$
 向量x和y的距离定义为数值$\left\lVert x-y \right\rVert$
 非零向量$x, y$的夹角为$\theta$，则
-$$ x^Ty = \left\lVert x \right\rVert \left\lVert y \right\rVert \cos\theta $$
+$$x^Ty = \left\lVert x \right\rVert \left\lVert y \right\rVert \cos\theta $$
 > 可通过余弦定理证明
 
 对于向量x和y，其单位向量分别为
-$$ u = \frac{x}{\left\lVert x \right\rVert} \\\\
+$$
+u = \frac{x}{\left\lVert x \right\rVert} \\\\
 v = \frac{y}{\left\lVert y \right\rVert}  \\\\
 \cos\theta = \frac{x^Ty}{||x|| ||y||} = u^Tv
 $$
-
 ### 标量投影和向量投影
 标量投影指的是向量x在向量y上投影的标量长度，等于x的欧几里得长度乘以$\cos\theta$
 $$
@@ -292,7 +302,6 @@ $$
 $$
 p = au = a \frac{y}{||y||} = \frac{x^Ty}{y^Ty} y
 $$
-
 ### 法向量
 若$N=(a, b, c)^T$为一非零向量，$P_0=(x_0, y_0, z_0)$为一定点，使得$P_0 P$和$N$正交的点$P$的集合构成一个过$P_0$的三维空间中的平面$\pi$。向量$N$和平面$\pi$相互垂直，向量$N$称为平面$\pi$的法向量。此时,向量$P_0P$和向量$N$的内积为0，因此有
 $$
@@ -344,7 +353,6 @@ x = y + z, y \in R(A^T), z \in N(A) \\\\
 Ax = Ay + Az = Ay \\\\
 \text{因此}R(A) = \lbrace Ax | x \in R^n \rbrace = \lbrace Ay | y \in R(A^T) \rbrace
 $$
-
 ### 最小二乘法
 给定一个$m \times n$的方程组$Ax = b, m > n$，因为$m>n$，所以矩阵A非满秩，A的列空间为$R^m$中的r维子空间（r是A的秩），若b不在A的列空间中，则方程没有解。但可以找到一个解x，使得$b-Ax$最小。
 这里假定A的列空间是个三维空间中的二维子空间，即一个面，b刚好不在该空间中，令$p \in R(A)$，则$b - p$等于b的向量顶点到A的子空间平面的距离时，$b-Ax$最小。
@@ -353,11 +361,12 @@ $$b-p \in S^{\bot}, S=R(A), S^{\bot} = N(A^T) \\\\
  b-p \in N(A^T), A^T(b-p) = 0, A^Tb = A^TAy$$
 
 > 证明$b-p \in S^{\bot}, p=A\hat{x}$时，残差$r = b - Ax$有最小值
-$$ 
+$$
 令r(A) = b - y, y \in R(A)\\\\
 因R(A)^{\bot} = N(A^T) \\\\
 b = c + d, c \in R(A), d \in N(A^T) \\\\
-r(A) = b - c + c - y = (b-c) + (c - y), b-c=z \in N(A^T), c-y \in R(A) \\\\
+r(A) = b - c + c - y = (b-c) + (c - y), \\\\
+b-c=z \in N(A^T), c-y \in R(A) \\\\
 ||r(A)|| = \left\lVert (b-c) + (c-y) \right\rVert ^ 2 = \left\lVert (b-c)\right\rVert ^2 + \left\lVert (c-y) \right\rVert ^ 2 \\\\
 || b-y ||^2 = \left\lVert (b-c)\right\rVert ^2 + \left\lVert (c-y) \right\rVert ^ 2
 $$
@@ -373,7 +382,8 @@ $$\hat{x} = (A^TA)^{-1}A^Tb$$
 
 ### 最优最小二乘拟合
 最优最小二乘拟合分两类：最优线性最小二乘拟合和最优n次多项式最小二乘拟合。对于最优线性最小二乘拟合，
-$$ y = c_0 + c_1x \\\\
+$$
+y = c_0 + c_1x \\\\
 A = \begin{bmatrix} 1 & x_1 \\\\
 1 & x_2 \\\\
 \vdots \\\\
@@ -382,14 +392,14 @@ c = (c_0, c_1)^T \\\\
 Ac = (y_1, y_2, \cdots, y_n)^T
 $$
 对于最优n次多项式最小二乘拟合
-$$ y = c_0 + c_1x + c_2x^2 + \cdots + c_nx^n \\\\
+$$
+y = c_0 + c_1x + c_2x^2 + \cdots + c_nx^n \\\\
 \begin{bmatrix} 1 & x_1 & x_1^2 & \cdots & x_1^n \\\\
 \vdots \\\\
 1 & x_m & x_m^2 & \cdots & x_m^n \\\\ \end{bmatrix}
 \begin{bmatrix} c_0 \\\\ \vdots \\\\ c_n \end{bmatrix}
 = \begin{bmatrix} y_1 \\\\ \vdots \\\\ y_m \end{bmatrix}
 $$
-
 ### 广义上的内积空间
 > 以上我们接触到的内积又称为标量积，是定义在$R^n$空间中的；内积空间还可以定义在其他向量空间中，包括$R^{m \times n}, C[a, b], P_n$
 函数向量空间有定义域，是区间；多项式向量空间的定义域为多个实数。
@@ -417,9 +427,10 @@ $$
 
 
 ### 正交集
-令${v_1, v_2, \cdots, v_n}$为一内积空间$V$中的非零向量，若当$i != j, \langle v_i, v_j \rangle = 0$，则${v_1, v_2, \cdots, v_n}$称为向量的正交集；
+令$\lbrace v_1, v_2, \cdots, v_n \rbrace$为一内积空间$V$中的非零向量，若当$i != j, \langle v_i, v_j \rangle = 0$，则${v_1, v_2, \cdots, v_n}$称为向量的正交集；
 若${v_1, v_2, \cdots, v_n}$为单位向量，则该集合称为规范正交集，亦可称为内积空间V的子空间$Span(v_1, v_2, \cdots, v_n)$中的**规范正交基**；
 正交集的向量线性无关。
+
 > 正交集要求各向量之间相互正交，但不要求正交集的向量张成原始向量空间，所以正交集不一定构成正交基
 
 ### 规范正交基的性质
@@ -444,3 +455,269 @@ $$
 正交矩阵和内积：$\langle Qx, Qy \rangle = \langle x, y \rangle$
 
 > $<Qx, Qy> = (Qy)^TQx = y^TQ^TQx = y^Tx = <x, y>$
+
+$\left\lVert Qx \right\rVert_2 = \left\lVert x \right\rVert_2$
+
+> 若将$Q$看做转换矩阵，上式表示用一个正交矩阵对向量进行线性转换之后，向量的长度保持不变
+
+### 置换矩阵
+
+单位矩阵$I$的各列重新排列获得的矩阵称为置换矩阵。置换矩阵乘以目标矩阵，目标矩阵的各行将按照置换矩阵的各行排列顺序进行排列；目标矩阵乘以置换矩阵，目标矩阵各**列**将按照置换矩阵的各列的排列顺序进行排列。
+
+> 置换矩阵是正交矩阵，故$Q^{-1} = Q^T$
+
+### 规范正交基和最小二乘法
+
+令$S$为一个内积空间$V$的子空间，并令$x \in V, \lbrace u_1, u_2, \cdots, u_n \rbrace$为$S$的一组规范正交基。若$p = \sum_{i=1}^n c_iu_i,\text{其中} c_i=\langle x, u_i \rangle$,则$p - x \in S^{\bot}$
+
+$p$称为$x$到$S$上的投影；令$U = (u_1, u_2, \cdots, u_k)$，则$b$到$S$上的投影$p = UU^Tb$；其中，$UU^T$为$b$到$R^m$子空间$S$上的投影矩阵。
+
+> 证明：$$p = \sum_{i=1}^n \langle b, u_i \rangle u_i \\\\
+> = c_1u_1 + c_2u_2 + \cdots + c_nu_n = U(c_1, \cdots, c_n)^T \\\\
+> = U(u_1^Tb, u_2^Tb, \cdots, u_n^Tb)^T \\\\
+> = UU^Tb  $$
+
+要求$V$中任一向量$v$到其子空间$S$上的投影，只需构造$S$的规范正交基$U$，$ p = UU^Tv$
+
+### 函数逼近
+
+利用一些特殊类型的函数集合对一个连续函数进行逼近。
+> 最优线性最小二乘逼近：在某个区间上定义内积运算，通过$\langle 1, x-a \rangle = 0$找出两个正交的向量，然后分别单位化，得到规范正交基$U$，然后用$U$表示目标函数在由$U$张成的子空间中的投影。此投影即为最小二乘逼近
+
+
+### 三角多项式逼近
+用于逼近周期函数，其内积定义一般为在$[-\pi, \pi]$上，$<f, g> = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)g(x)dx$，在该内积空间内，$\frac{1}{\sqrt{2}}, \cos x, \sin x, \cos 2x, \sin 2x, \cdots, \cos nx, \sin nx$为一个规范正交集
+三角多项式的形式为
+$$
+t_n(x) = \frac{a_0}{2} + \sum_{k=1}^n(a_k\cos kx + b_k\sin kx) \\\\
+$$
+
+> 即将$f(x)$投影到规范正交集张成的函数向量空间中，以此最小二乘逼近原函数
+
+其中
+$$
+a_k = \langle f, \cos kx \rangle = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos kx dx
+\\\\
+b_k = \langle f, \sin kx \rangle = \frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin kx dx
+$$
+对于特殊情况$a_0$，
+$$
+a_0 = \langle f, \cos 0x \rangle = \langle f, 1 \rangle = \sqrt{2} \langle f, \frac{1}{\sqrt{2}} \rangle 
+\\\\
+ \frac{a_0}{2} = \langle f, \frac{1}{\sqrt{2}} \rangle \frac{1}{\sqrt{2}}
+$$
+注意到当$f(x)$确定了，$a_k， b_k$也便是常数，若令
+$$
+r_k = \sqrt{a_k^2 + b_k^2}, \theta_k = \tan^{-1}(\frac{b_k}{a_k})
+$$
+则
+$$
+a_k\cos kx + b_k\sin kx = r_k(\frac{a_k}{r_k}\cos kx + \frac{b_k}{r_k} \sin kx) \\\\
+= r_k\cos (kx - \theta)
+$$
+因此$t_n(x)$可以看做是简谐运动的叠加。
+
+
+
+### 三角多项式逼近的复数形式
+
+令
+$$
+c_k = \frac{1}{2}(a_k -ib_k) \\\\
+= \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)(\cos kx - i\sin kx)dx \\\\
+= \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{-ikx}dx
+$$
+同时，令$c_k$的共轭$c_{-k}$为
+$$
+c_{-k} = \frac{1}{2}(a_k+ib_k) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(x)e^{ikx}dx
+$$
+因此
+$$
+a_k = c_k + c_{-k}, b_k = i(c_k - c_{-k}) \\\\
+a_k\cos kx + b_k \sin kx = c_k\cos kx + c_{-k} \cos kx + ic_k \sin kx - ic_{-k}\sin kx \\\\
+= c_k e^{ikx} + c_{-k}e^{-ikx}
+$$
+
+三角形式的复数形式表达式为
+$$
+t_n(x) = \sum_{k=-n}^{n}c_ke^{ikx}
+$$
+
+### 傅里叶变换
+#### 抑制高频的方法
+
+#### 离散傅里叶变换
+
+#### 快速傅里叶变换
+
+
+
+## 特征值
+
+***
+
+### 特征向量和特征值
+
+#### 定义
+
+令$A$为一个$n \times n$矩阵，如果存在一个非零向量$x$使得$Ax = \lambda x$，则称标量$\lambda$为特征值，向量$x$为属于$\lambda$的特征向量。
+
+> 首先，特征值和特征向量是相对于方阵而言的，方阵对应的线性变换为线性算在，即在同一向量空间中的线性转换。特征向量的特殊之处在于，矩阵$A$乘以特征向量相当于对特征向量进行缩放，简化了矩阵乘法。所以，将向量转移成由特征向量为基的坐标表示的形式，再进行矩阵乘法，会简化运算。
+
+#### 求解方法
+
+$$
+Ax = \lambda x \\\\
+(A-\lambda I)x=0 \\\\
+$$
+
+即上式有非平凡解，等价于$A -\lambda I$为奇异的，特征多项式$p(\lambda)= det(A-\lambda I) = 0$，其中$N(A-\lambda I)$为对应于$\lambda$的特征空间（即由特征向量张成的特征空间）。
+
+> 特别注意：对某一矩阵，特征值是唯一的（可能有重根），但每个特征向量的取值不是唯一的，而是一个一维向量，即若$x_1$是某一特征值对应的特征向量，$\alpha x_1$也是对应的特征向量
+
+#### 性质
+
+如果考虑重根和复数的情况，$A$刚好有n个特征值；所有特征值的和等于$A$的对角线元素之和$$\lambda _1+ \lambda _2+ \cdots + \lambda _n = trace(A) = \sum_{i=1}^{n} a_{ii}$$
+所有特征值的乘积等于$A$的行列式，$det(A) = \lambda _1\cdot  \lambda _2 \cdots \lambda _n$
+
+#### 复特征值
+
+若矩阵为一实元素矩阵，
+
+若$A$和$B$为有复元素的矩阵，且乘法$AB$可行，则$\overline{AB} = \overline{A}\overline{B}$
+
+#### 相似矩阵的特征值
+
+若矩阵$A, B$相似，$B = S^{-1}AS$，则这两个矩阵有相同的特征多项式，相应地它们有相同的特征值。但对应于各特征值的特征向量不一样。
+
+#### 延申的性质
+
+1. 三角形矩阵的特征值为矩阵的对角元素
+2. $A$为奇异的充要条件是：$\lambda=0$为$A$的一个特征值
+3. 矩阵$A$和$A^T$具有相同的特征值（可以通过特征值之和和特征值的乘积进行证明），但对应的特征向量不一样
+4. 若矩阵$Q$为一正交矩阵，则其特征值$\lambda$满足$|\lambda | = 1$
+
+### 对角化
+
+#### 特征向量
+
+若$\lambda_1, \lambda_2, \cdots, \lambda_k$为一个$n\times n$矩阵$A$的不同特征值，相应的特征向量为$x_1, \cdots, x_k$，则$x_1, \cdots, x_k$线性无关
+
+#### 对角化
+
+若存在一个非奇异矩阵$X$使得$A = XDX^{-1}$，其中D为对角矩阵，则称A可对角化。
+
+$n\times n$矩阵A可对角化的充要条件是A有n个线性无关的特征向量。
+
+> 什么时候A有n个线性无关的特征向量呢？
+>
+> 1. 如果A有n个不相等的特征值，则对应的n个特征向量线性无关，满足条件；
+> 2. 如果A有k个不相等的特征值($k<n$)，但仍然有n个线性无关的特征向量
+
+> 线性无关的特征向量小于n个的矩阵，称为退化的。
+
+> 证明：如果A可对角化，即存在非奇异矩阵A满足$$ AX = XD \\\\ A(x_1, \cdots, x_n) = (Ax_1, \cdots, Ax_n) = (d_{11}x_1, \cdots, d_{nn}x_n) \\\\ Ax_1 = d_{11}x_1, \cdots, Ax_n = d_{nn}x_n$$
+>
+> 反之，如果A存在n个线性无关的特征向量，则令$X = (x_1, x_2, \cdots, x_n)$，则有$AX = XD$，其中D为对角矩阵，对角元素为特征值
+
+矩阵对角化，D为对角矩阵，对角元素为特征值，X为特征向量构成的矩阵。对角化矩阵X不是唯一的，将X的各列重新排列，或者各列都乘以一个不等或相等的非零的标量，就可以获得一个新的对角化矩阵$X$
+
+> $X = (x_1, x_2, \cdots, x_n)$，其中特征向量的选取不受限制，可以进行任意缩放。
+
+证明$(c_1x_1, c_2x_2, \cdots, c_nx_n)$亦满足对角化
+$$
+A = XDX^{-1} \\\\
+B = (c_1x_1, c_2x_2, \cdots, c_nx_n) \\\\
+B = XC \\\\
+BDB = XCD(XC)^{-1} = XCDC^{-1}X^{-1} \\\\
+CDC^{-1} = D \\\\
+BDB = A
+$$
+
+#### 几何重数和代数重数
+几何重数和代数重数都是相对于矩阵A在某一特征值下而言的。
+几何重数：特征值为$\lambda$时，对应的特征空间的维度；
+代数重数：特征值的大小，即该特征值所对应的特征向量缩放的大小。
+
+#### 随机矩阵
+
+马尔科夫链
+
+#### 矩阵指数
+
+给定一个标量$\alpha$，指数可以表示为一个幂级数$e^{\alpha} = 1+\alpha + \frac{1}{2!}\alpha ^2 + \frac{1}{3!}\alpha ^3 + \cdots$
+
+同理，对于任何$n\times n$矩阵A，可以定义矩阵指数为一个收敛的幂级数$e^A = I + A + \frac{1}{2!}A^2 + \frac{1}{3!}A^3+\cdots$
+
+若A为对角矩阵, D的n次方等于将对角元素进行n次方运算，
+$$
+D = \lim (I+D+\frac{1}{2!}D^2 + \frac{1}{3!}D^3 + \cdots) \\\\
+$$
+故$e^D$为对角矩阵，对角元素为$(e^{d_1}, e^{d_2}, \cdots, e^{d_n})$。若A可对角化，
+$$
+A = XDX^{-1} \\\\
+e^A = e^{XDX^{-1}} = I + XDX^{-1} + \frac{1}{2!}XD^2X^{-1} + \frac{1}{3!}XD3X^{-1} +\cdots \\\\
+ = X(I+D + \frac{1}{2!}D^2+ \cdots)X^{-1} = Xe^DX^{-1}
+$$
+
+### 埃尔米特矩阵
+
+#### 复数的向量空间和标量域
+
+$C^n$表示所有n元复数组构成的向量空间，$C$表示复数集合构成的标量域。
+
+若$a = a+bi$为一复数标量，则$a$的长度为$|a| = \sqrt{\overline{a}a} = \sqrt{a^2+b^2}$
+
+$C^n$中的向量$z = (z_1, \cdots, z_n)^T$的长度为$||z|| = \sqrt{z^Hz}$
+
+令$M = (m_{ij})$为一$m \times n$矩阵，且对每一个$i, j, m_{ij} = a_{ij}+ ib_{ij}$，我们可以将$M$写成$M = A + iB$，其中$M$的共轭为$\overline{M} = A - iB$。$M$的转置记为$M^H$，等于将M的所有元素先求共轭，再矩阵转置。
+
+复数矩阵满足
+
+1. $(A^H)^H = A$
+2. $(\alpha A + \beta B)^H = \overline{\alpha}A^H + \overline{\beta}B^H$
+3. $(AC)^H = C^HA^H$
+
+
+
+#### 复内积
+
+| $R^n$                                 | $C^n$                                      |
+| ------------------------------------- | ------------------------------------------ |
+| $<x, y> = y^Tx$                       | $<z, w> = w^Hz; <z,w> = \overline{<w, z>}$ |
+| $x^Ty = y^Tx$                         | $z^Hw = \overline{w^Hz}$                   |
+| $\left\lVert x\right\rVert ^2 = x^Tx$ | $\left\lVert z\right\rVert ^2 = z^Hz$      |
+
+
+
+#### 埃尔米特矩阵
+
+若一个矩阵M满足$M = M^H$，则称之为埃尔米特矩阵
+
+> 若M为实元矩阵，则$M^H = M^T$；若M为一实对称矩阵，M为埃尔米特矩阵
+
+埃尔米特矩阵的特征值都是实的，且属于不同特征值的特征向量是正交的。
+
+> 证明：令$a = x^HAx$，因为a为复标量，故$\overline{a} = a^H = x^HAx = a$，故标量$a$是实数。因为$a = x^HAx = x^H\lambda x = \lambda ||x||^2$，所以$\lambda = \frac{a}{||x||^2}$
+>
+> $(Ax_1)^Hx_2 = x_1^HA^Hx_2 = x_1^HAx_2 = x_1^H\lambda _2 x_2=\lambda_2x_1^Hx_2$
+>
+> $(Ax_1)^Hx_2 = (x_2^HAx_1)^H = (x_2^H\lambda_1 x_1)^H = \lambda_1x_1^Hx_2$
+>
+> $(\lambda_1 - \lambda_2)x_1^Hx_2 = 0$
+
+> 实对称矩阵对于不同特征值的特征向量是正交的。
+
+#### 酉矩阵
+
+若一个$n\times n$矩阵$U$的列向量构成了$C^n$中的一个规范正交集，则称之为酉矩阵。
+
+> 酉矩阵满足$U^HU = I, U^H = U ^{-1}$，实的酉矩阵就是正交矩阵。
+
+若埃尔米特矩阵$A$的特征值互不相同，则存在一个酉矩阵$U$对角化$A$。
+
+> 若矩阵A的特征值互不相同，则其特征向量是正交的，对每一个特征向量求单位向量，即可构成酉矩阵。
+
+
+
+
