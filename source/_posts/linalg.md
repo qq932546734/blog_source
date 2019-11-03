@@ -780,3 +780,23 @@ T^HT = TT^H $$
 
 1. 令w为一复标量，则$\overline{w} = w^H$
 2. 令w为一复标量，$u$为一复向量，则$wu^H = u^Hw^H = \overline{w}u^H$
+
+### 奇异值分解
+
+#### 定义
+
+将矩阵$A$ 因式分解成$U\Sigma V^T$称为奇异值分解，其中$U$为$m\times m$的正交矩阵，V为$n\times n$的正交矩阵，$\Sigma$是$m\times n$的矩阵，其形式如下：
+$$
+\Sigma = \begin{bmatrix} \Sigma_1 & 0 \\\\ 0 & 0 \end{bmatrix} \\\\
+$$
+其中$\Sigma_1$是对角矩阵，其对角元素为矩阵$A^TA$的非零特征值按从大到小排序之后，开方，即$\sigma _i = \sqrt{\lambda_i}$
+
+> 若A的秩为$\gamma$，则矩阵$A^TA$的秩也为$\gamma$？证明之
+
+#### 求解方法
+
+首先，计算矩阵$A^TA$的特征值，进而求出奇异值，构造$\Sigma$（按照奇异值从大到小的顺序排列）；
+
+然后对应于每一个特征值，求解$A^TA$的特征向量，构造$V = (v_1, v_2, \cdots, v_n)$；
+
+对于矩阵$U$，其前n个列向量（若$m \gt n$）可以根据公式$u_i = \frac{1}{\sigma_i}Av_i$求解。
